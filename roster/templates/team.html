@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block nav %}{% include "nav.html" with active="baseball" %}{% endblock %}
+
+{% block content %}
+
+    <div class="inner cover">
+        
+
+        <div class="row">
+            <div class="col-xs-12">
+                <img class="img-circle" src="{{ STATIC_URL }}images/sports/{{ team.sport.name|lower }}.png" alt="{{ team.sport.name }}">
+                <h1>{{ team.gender }} {{ team.sport.name }} Roster</h1>
+            </div>
+        </div>
+
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Player</th>
+                    <th class="th-hand">Hand</th>
+                    <th class="th-position">Position</th>
+                    <th class="th-year">Year</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for player in players %}
+                    <tr>
+                        <td class="td-number">{{ player.number }}</td>
+                        <td class="td-player">
+                            <a href="{% url "roster.views.player" pk=player.id %}">
+                                {{ player.student.first_name }} {{ player.student.last_name }}
+                            </a>
+                        </td>
+                        <td class="td-hand">{{ player.hand }}</td>
+                        <td class="td-position">{{ player.position }}</td>
+                        <td class="td-year">{{ player.student.year }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if players.has_previous %}
+                    <a href="?page={{ players.previous_page_number }}">Previous</a> |
+                {% endif %}
+
+                <span class="current">
+                    Page {{ players.number }} of {{ players.paginator.num_pages }}
+                </span>
+
+                {% if players.has_next %}
+                    | <a href="?page={{ players.next_page_number }}">Next</a>
+                {% endif %}
+            </span>
+        </div>
+
+    </div>
+
+{% endblock %}

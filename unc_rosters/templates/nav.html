@@ -1,0 +1,6 @@
+    <ul class="nav masthead-nav">
+        <li{% if active == "home" %} class="active"{% endif %}><a href="{% url 'roster.views.home' %}">Home</a></li>
+        <li{% if active == "baseball" %} class="active"{% endif %}><a href="{% url 'roster.views.team' pk=1 %}">Baseball</a></li>
+        <li{% if active == "basketball" %} class="active"{% endif %}><a href="#">Basketball</a></li>
+        <li{% if active == "soccer" %} class="active"{% endif %}><a href="#">Soccer</a></li>
+    </ul>

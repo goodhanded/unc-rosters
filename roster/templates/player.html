@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block nav %}{% include "nav.html" with active="baseball" %}{% endblock %}
+
+{% block content %}
+
+    <div class="inner cover">
+        
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>{{ player.student.first_name }} {{ player.student.last_name }}</h1>
+                <img class="img-thumbnail" src="{{ player.photo.url }}" alt="{{ team.sport.name }}" align="left">
+                <p class="player-bio"><strong>Hometown:</strong> {{ player.student.hometown }}</p>
+                <p class="player-bio"><strong>High School:</strong> {{ player.student.highschool }}</p>
+                <p class="player-bio"><strong>Bio:</strong></p>
+                <p class="player-bio">{{ player.bio|linebreaksbr }}</p>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
